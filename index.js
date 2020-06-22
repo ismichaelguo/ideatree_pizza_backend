@@ -7,6 +7,8 @@ const app = new Koa;
 const router = require('./src/routers/router');
 
 // config mongoose, connect to mongodb 
+//mongodb://127.0.0.1:27017/
+//mongodb+srv://michael_guo:As5821647@cluster0-nzyqb.mongodb.net/idea-pizza?retryWrites=true&w=majority
 mongoose
     .connect('mongodb://127.0.0.1:27017/idea-pizza', { useUnifiedTopology: true, useNewUrlParser: true  })
     .catch(error=>console.log(error))
