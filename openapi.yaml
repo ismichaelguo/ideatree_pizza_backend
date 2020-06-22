@@ -28,4 +28,75 @@ paths:
           description: User Created
         "400":
           description: Bad user request
+  /user/{id}:
+    get:
+      summary: Get user
+      description: Get a user by id
+      tags:
+        - User
+      parameters:
+        - in: path
+          name: id
+          description: id of user
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A user response
+        "404":
+          description: User no found
+    delete:
+      summary: Delete user
+      description: Delete a user by id
+      tags:
+        - User
+      parameters:
+        - in: path
+          name: id
+          description: id of user
+          required: true
+          schema: 
+            type: string
+      responses:
+        "201":
+          description: Deleted!
+        "404":
+          description: User no found
+    put:
+      summary: Update User
+      description: update a user by id
+      tags:
+        - User
+      parameters:
+        - in: path
+          name: id
+          description: id of user 
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                email:
+                  type: string 
+                name:
+                  type: string
+                password: 
+                  type: string
+                phone:
+                  type: string
+      responses:
+        "201":
+          description: Updated
+        "404":
+          description: User no found
+
+
+                
+
+  
 
