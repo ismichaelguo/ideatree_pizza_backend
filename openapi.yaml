@@ -94,6 +94,21 @@ paths:
           description: Updated
         "404":
           description: User no found
+  /products:
+    get:
+      summary: Get Products
+      description: get all products
+      tags:
+        - Product
+      responses:
+        "200":
+          description: Product has a response
+        "404":
+          description: Product no found
+
+
+       
+
 
 
                 
