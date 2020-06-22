@@ -7,6 +7,12 @@ const UserSchema = new mongoose.Schema({
     name:String,
     password:String,
     phone:String,
+    addresses:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Address"
+        }
+    ]
 
 })
 

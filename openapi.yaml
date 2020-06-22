@@ -105,6 +105,57 @@ paths:
           description: Product has a response
         "404":
           description: Product no found
+  /address:
+    post:
+      summary: Create address
+      description: Create address by request body
+      tags:
+      - Address 
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                userId:
+                  type: string
+                unit:
+                  type: number 
+                streetNum:
+                  type: number
+                streetName: 
+                  type: string
+                suburb:
+                  type: string
+                postcode:
+                  type: number
+              required:
+                    - streetNum
+                    - streetName
+                    - suburb
+      responses:
+        "201":
+          description: Address Created
+        "400":
+          description: Bad address request
+  /address/{id}:
+    get:
+      summary: Get addresses 
+      description: Get addresses by user id
+      tags:
+        - Address
+      parameters:
+        - in: path
+          name: id
+          description: id of user
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Addresses response
+        "404":
+          description: User no found
 
 
        

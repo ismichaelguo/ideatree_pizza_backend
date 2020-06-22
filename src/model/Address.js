@@ -1,20 +1,20 @@
 'user strict'
 
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 
 const AddressSchema = new mongoose.Schema({
-    unit:String,
-    streetNum:{ type: Number, min:1, max: 9999 },
-    streetName:{ type: Number, min:1, max: 9999 },
-    suburb:String,
-    postcode:{ type: Number, min:1, max: 9999 },
-    users:[
+    unit: { type: Number, min: 0, max: 9999 },
+    streetNum: { type: Number, min: 0, max: 9999 },
+    streetName: String,
+    suburb: String,
+    postcode: { type: Number, min: 0, max: 9999 },
+    users: [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"User"
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
         }
     ]
 
 
 });
-module.exports = mongoose.model('Address',AddressSchema);
+module.exports = mongoose.model('Address', AddressSchema);
