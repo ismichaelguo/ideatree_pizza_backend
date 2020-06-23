@@ -156,6 +156,17 @@ paths:
           description: Addresses response
         "404":
           description: User no found
+  /stores:
+    get:
+      summary: Get stores
+      description: get all stores
+      tags:
+        - Stores
+      responses:
+        "200":
+          description: Stores has a response
+        "404":
+          description: Stores not found
 
 
        
