@@ -10,7 +10,7 @@ const getUser = require('../controllers/user/get');
 const getProduct = require('../controllers/products/get');
 const createAddress = require('../controllers/address/create');
 const getAddress = require('../controllers/address/get');
-
+const getStores=require('../controllers/stores/get');
 
 router.post("/user", createUser);
 router.get('/user/:id',getUser);
@@ -21,6 +21,8 @@ router.get('/products',getProduct)
 
 router.post('/address',createAddress);
 router.get('/address/:id',getAddress);
+
+router.get('/stores',getStores);
 
 
 module.exports = router;
