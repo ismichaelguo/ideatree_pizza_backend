@@ -8,18 +8,18 @@ paths:
       summary: Create user
       description: Create user by request body
       tags:
-      - User 
+        - User
       requestBody:
         content:
           application/json:
-            schema: 
+            schema:
               type: object
               properties:
                 email:
-                  type: string 
+                  type: string
                 name:
                   type: string
-                password: 
+                password:
                   type: string
                 phone:
                   type: string
@@ -56,7 +56,7 @@ paths:
           name: id
           description: id of user
           required: true
-          schema: 
+          schema:
             type: string
       responses:
         "201":
@@ -71,21 +71,21 @@ paths:
       parameters:
         - in: path
           name: id
-          description: id of user 
+          description: id of user
           required: true
           schema:
             type: string
       requestBody:
         content:
           application/json:
-            schema: 
+            schema:
               type: object
               properties:
                 email:
-                  type: string 
+                  type: string
                 name:
                   type: string
-                password: 
+                password:
                   type: string
                 phone:
                   type: string
@@ -97,7 +97,7 @@ paths:
   /products:
     get:
       summary: Get Products
-      description: get all products
+      description: Get all products
       tags:
         - Product
       responses:
@@ -168,12 +168,139 @@ paths:
         "404":
           description: Stores not found
 
+  /order:
+    post:
+      summary: Create order
+      description: Create order after checkout
+      tags:
+        - Order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderTime:
+                  type: string
+                orderItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      foodName:
+                        type: string
+                      foodPrice:
+                        type: number
+                      imgDetail:
+                        type: string
+                      imgAlt:
+                        type: string
+                      quantity:
+                        type: number
+                totalPrice:
+                  type: number
+                address:
+                  type: string
+                type:
+                  type: string
+      responses:
+        "201":
+          description: Order Created
+        "400":
+          description: Bad order request
+    get:
+      summary: Bulk get order
+      description: Get all orders
+      tags:
+        - Order
+      responses:
+        "200":
+          description: An order response
+        "404":
+          description: Order no found
 
-       
-
-
-
-                
-
-  
-
+  /order/{id}:
+    get:
+      summary: Get order
+      description: Get an order by id
+      tags:
+        - Order
+      parameters:
+        - in: path
+          name: id
+          description: id of order
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An order response
+        "404":
+          description: Order no found
+    delete:
+      summary: Delete order
+      description: Delete an order by id
+      tags:
+        - Order
+      parameters:
+        - in: path
+          name: id
+          description: id of order
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Order deleted
+        "404":
+          description: Order no found
+    put:
+      summary: Update order
+      description: update a order by id
+      tags:
+        - Order
+      parameters:
+        - in: path
+          name: id
+          description: id of order
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderTime:
+                  type: string
+                orderItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      foodName:
+                        type: string
+                      foodPrice:
+                        type: number
+                      imgDetail:
+                        type: string
+                      imgAlt:
+                        type: string
+                      quantity:
+                        type: number
+                totalPrice:
+                  type: number
+                address:
+                  type: string
+                type:
+                  type: string
+      responses:
+        "201":
+          description: Order updated
+        "404":
+          description: Order no found
