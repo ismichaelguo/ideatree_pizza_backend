@@ -18,6 +18,7 @@ const bulkGetOrder = require('../controllers/order/bulkGet');
 const deleteOrder = require('../controllers/order/delete');
 const updateOrder = require('../controllers/order/update');
 
+const getStores = require('../controllers/stores/get');
 
 // user CRUD
 router.post("/user", createUser);
@@ -37,6 +38,8 @@ router.put('/order/:id', updateOrder)
 // address CRUD
 router.post('/address', createAddress);
 router.get('/address/:id', getAddress);
+
+router.get('/stores', getStores);
 
 
 module.exports = router;
