@@ -3,13 +3,16 @@ const Router = require("koa-router");
 const router = new Router();
 
 // user controller
-const createUser = require("../controllers/user/create");
-const deleteUser = require("../controllers/user/delete");
-const updateUser = require("../controllers/user/update");
-const getUser = require("../controllers/user/get");
-const getProduct = require("../controllers/products/get");
-const createAddress = require("../controllers/address/create");
-const getAddress = require("../controllers/address/get");
+const createUser = require('../controllers/user/create');
+const deleteUser = require('../controllers/user/delete');
+const updateUser = require('../controllers/user/update');
+const getUser = require('../controllers/user/get');
+const Login = require('../controllers/user/login');
+
+const getProduct = require('../controllers/products/get');
+
+const createAddress = require('../controllers/address/create');
+const getAddress = require('../controllers/address/get');
 
 // order controller
 const createOrder = require("../controllers/order/create");
@@ -22,13 +25,15 @@ const getStores = require("../controllers/stores/get");
 
 const getTopping = require("../controllers/toppings/get");
 
-// user CRUD
-router.post("/user", createUser);
-router.get("/user/:id", getUser);
-router.put("/user/:id", updateUser);
-router.delete("/user/:id", deleteUser);
+//user middleware
+const ExpandUsername = require('../middleware/ExpandUsername');
 
-router.get("/products", getProduct);
+// user CRUD
+router.post("/user/login", Login);
+router.post("/user/signup",ExpandUsername, createUser);
+router.get('/user/:id', getUser);
+router.put('/user/:id', updateUser);
+router.delete('/user/:id', deleteUser);
 
 // topping controller
 router.get("/toppings", getTopping);

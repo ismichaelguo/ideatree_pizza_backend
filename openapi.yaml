@@ -3,7 +3,28 @@ info:
   title: APIS
   version: 1.0.0
 paths:
-  /user:
+  /user/login:
+    post:
+      summary: User Login
+      description: User Authentication
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "201":
+          description: User Created
+        "400":
+          description: Bad user request
+  /user/signup:
     post:
       summary: Create user
       description: Create user by request body
