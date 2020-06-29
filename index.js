@@ -1,6 +1,12 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const { oas } = require('koa-oas3');
+// const cors = require('koa2-cors')
+const cors = require('@koa/cors');
+var jwt = require('koa-jwt');
+const errorHandler = require('./src/server/errorHandler');
+
+
 
 const mongoose = require('mongoose');
 const app = new Koa;
@@ -24,8 +30,23 @@ app.use(oas({
   validatePaths: ['/else'],
 }))
 
+const secret = 'jwt_secret'
+  app
+  .use(jwt({
+    secret,
+  }).unless({
+    //public apis, which do not have to access with token
+    path: [/\/signup/, /\/login/,/^\/products/],
+  }))
 app.use(bodyParser());
 app.use(router.routes());
+app.use(errorHandler);
+
+
+app.use(cors());
+
+
+
 
 
 app.listen(8080, () => {

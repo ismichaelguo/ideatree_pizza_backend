@@ -4,7 +4,8 @@
   "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -14,10 +15,15 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/Michael_Guo11/idea_tree_pizza_backend#readme",
   "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "bcrypt": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.12.1",
     "koa-bodyparser": "^4.3.0",
+    "koa-jwt": "^4.0.0",
     "koa-oas3": "^1.0.0",
     "koa-router": "^9.0.1",
+    "koa2-cors": "^2.0.6",
     "mongoose": "^5.9.19"
   }
 }
