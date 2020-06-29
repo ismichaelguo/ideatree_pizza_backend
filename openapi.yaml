@@ -167,7 +167,17 @@ paths:
           description: Stores has a response
         "404":
           description: Stores not found
-
+  /toppings:
+    get:
+      summary: Get all toppings
+      description: Get all toppings
+      tags:
+        - Topping
+      responses:
+        "200":
+          description: Toppings are found
+        "404":
+          description: Toppings no found        
   /order:
     post:
       summary: Create order
