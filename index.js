@@ -2,9 +2,10 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const { oas } = require('koa-oas3');
 // const cors = require('koa2-cors')
-const cors = require('@koa/cors');
-var jwt = require('koa-jwt');
+const cors = require('koa2-cors');
+const jwt = require('koa-jwt');
 const errorHandler = require('./src/server/errorHandler');
+const isRevoked = require('./src/server/isRevoked');
 
 
 
@@ -30,20 +31,24 @@ app.use(oas({
   validatePaths: ['/else'],
 }))
 
+app.use(cors({
+  origin: 'http://localhost:3000', // 指定origin为前端地址
+  credentials: true,
+  allowMethods: ['GET', 'POST','DELETE','PUT'],
+  maxAge: 86400}));
+
+app.use(isRevoked);
 const secret = 'jwt_secret'
   app
   .use(jwt({
-    secret,
+    secret
   }).unless({
     //public apis, which do not have to access with token
-    path: [/\/signup/, /\/login/,/^\/products/],
+    path: [/\/login/,/\/signup/,/^\/products/],
   }))
 app.use(bodyParser());
 app.use(router.routes());
-app.use(errorHandler);
 
-
-app.use(cors());
 
 
 
