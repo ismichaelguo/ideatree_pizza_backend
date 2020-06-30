@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 async function Login(ctx){
     const {body}= ctx.request;
     const {email,password} = body
+    console.log("body",body)
     const user = await User.findOne({email:email});
     if(!user.length){
         ctx.status = 401;
@@ -14,23 +15,34 @@ async function Login(ctx){
             message: "Username is not existed!"
         }
     }
+    //secret key, same with the key decode the token
     const secret = 'jwt_secret'
-    console.log("password_input",password)
-    console.log("password_database",user.password)
+
 
     const compare = await bcrypt.compare(password, user.password)
     console.log("compare",compare)
+    const token = jsonwebtoken.sign({
+        data:user.email,
+        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), // 60 seconds * 60 minutes * 24 = 1 day
+    },secret)
 
     if(compare){
         ctx.status = 200;
+        ctx.cookies.set('tokenName',token,{
+            //cookie expire time
+            expires:new Date('2020-08-10'),
+            //cookie existing time
+            maxAge: 60*60,
+            httpOnly:false,
+        })
+        console.log("cookie",ctx.cookies.get('tokenName'))
         ctx.body = {
             message:" Log in successful!",
             //jwt.sign(payload, secretOrPrivateKey, [options, callback])
-            token: jsonwebtoken.sign({
-                data:user,
-                exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), // 60 seconds * 60 minutes * 24 = 1 day
-            },secret)
+            token: token,
+            cookie:ctx.cookies.get('tokenName'),
         }
+
     }else{
         ctx.status=401;
         ctx.body = {
