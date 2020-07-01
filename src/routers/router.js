@@ -20,6 +20,7 @@ const getOrder = require("../controllers/order/get");
 const bulkGetOrder = require("../controllers/order/bulkGet");
 const deleteOrder = require("../controllers/order/delete");
 const updateOrder = require("../controllers/order/update");
+const listOrder = require("../controllers/order/list")
 
 const getStores = require("../controllers/stores/get");
 
@@ -47,6 +48,7 @@ router.get("/order", bulkGetOrder);
 router.get("/order/:id", getOrder);
 router.delete("/order/:id", deleteOrder);
 router.put("/order/:id", updateOrder);
+router.get("/order/:page/:pageSize", listOrder); // pagination
 
 // address CRUD
 router.post("/address", createAddress);
