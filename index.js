@@ -4,7 +4,6 @@ const { oas } = require('koa-oas3');
 // const cors = require('koa2-cors')
 const cors = require('koa2-cors');
 const jwt = require('koa-jwt');
-const errorHandler = require('./src/server/errorHandler');
 const isRevoked = require('./src/server/isRevoked');
 
 
