@@ -17,22 +17,22 @@ function getToken(user){
 }
 
 function isRevoked(ctx, next) {
-
+    //if there is token in the header
   if (ctx.header && ctx.header.authorization) {
     const parts = ctx.header.authorization.split(" ");
     console.log("length",parts.length)
     if (parts.length === 2) {
-      //取出token
+      //take token from the request header
       const scheme = parts[0];
       const token = parts[1];
       console.log("token", token);
-
+        //Bearer authentication
       if (/^Bearer$/i.test(scheme)) {
         try {
           //jwt.verify方法验证token是否有效
           const secret = 'jwt_secret'
           //jwt.verify(token, secretOrPublicKey, [options, callback])
-          jwt.verify(token, secret, {
+          jsonwebtoken.verify(token, secret, {
             //complete: return an object with the decoded { payload, header, signature } 
             //instead of only the usual content of the payload.
             complete: true,
