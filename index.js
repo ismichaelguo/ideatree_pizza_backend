@@ -43,7 +43,7 @@ const secret = 'jwt_secret'
     secret
   }).unless({
     //public apis, which do not have to access with token
-    path: [/\/login/,/\/signup/,/^\/products/],
+    path: [/\/login/,/\/signup/,/^\/products/,/^\/stores/,/^\/address/],
   }))
 app.use(bodyParser());
 app.use(router.routes());
