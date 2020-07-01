@@ -131,29 +131,29 @@ paths:
       summary: Create address
       description: Create address by request body
       tags:
-      - Address 
+        - Address
       requestBody:
         content:
           application/json:
-            schema: 
+            schema:
               type: object
               properties:
                 userId:
                   type: string
                 unit:
-                  type: number 
+                  type: number
                 streetNum:
                   type: number
-                streetName: 
+                streetName:
                   type: string
                 suburb:
                   type: string
                 postcode:
                   type: number
               required:
-                    - streetNum
-                    - streetName
-                    - suburb
+                - streetNum
+                - streetName
+                - suburb
       responses:
         "201":
           description: Address Created
@@ -161,7 +161,7 @@ paths:
           description: Bad address request
   /address/{id}:
     get:
-      summary: Get addresses 
+      summary: Get addresses
       description: Get addresses by user id
       tags:
         - Address
@@ -198,7 +198,7 @@ paths:
         "200":
           description: Toppings are found
         "404":
-          description: Toppings no found        
+          description: Toppings no found
   /order:
     post:
       summary: Create order
@@ -212,6 +212,8 @@ paths:
               type: object
               properties:
                 orderTime:
+                  type: string
+                DeliverPickupTime:
                   type: string
                 orderItems:
                   type: array
@@ -307,6 +309,8 @@ paths:
               properties:
                 orderTime:
                   type: string
+                DeliverPickupTime:
+                  type: string
                 orderItems:
                   type: array
                   items:
@@ -335,3 +339,37 @@ paths:
           description: Order updated
         "404":
           description: Order no found
+  /order/{page}/{pageSize}:
+    get:
+      summary: Fetch a subset of orders by page number.
+      description: >
+        List a subset of orders to realise pagination.
+      tags:
+        - Order
+      parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+      responses:
+        "200":
+          description: Order responses.
+        "400":
+          description: Bad request.
+        "404":
+          description: Orders not found.
+
+components:
+  parameters:
+    page:
+      in: path
+      name: page
+      description: page index, cannot be zero.
+      required: true
+      schema:
+        type: number
+    pageSize:
+      in: path
+      name: pageSize
+      description: page item number
+      required: true
+      schema:
+        type: number
