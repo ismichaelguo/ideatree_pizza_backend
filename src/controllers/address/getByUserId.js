@@ -1,16 +1,17 @@
 const Address = require('../../model/Address');
 const User = require('../../model/User');
+const mongoose = require('mongoose');
 
 async function getAddress(ctx) {
     const { id } = ctx.params;
-    const check = await User.findById(id);
+    const check = await User.findById({ _id: new mongoose.Types.ObjectId(id) });
     if (check === null) {
         ctx.status = 404;
             ctx.body = {
                 message: "User does not exist!"
             }
     } else {
-        const res = await User.findById(id).populate("addresses", "-_id -__v -users");
+        const res = await User.findById({ _id: new mongoose.Types.ObjectId(id) }).populate("addresses", "-_id -__v -users");
         if (res.addresses.length) {
 
             ctx.status = 200;

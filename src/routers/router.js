@@ -9,10 +9,14 @@ const updateUser = require("../controllers/user/update");
 const getUser = require("../controllers/user/get");
 const Login = require("../controllers/user/login");
 
+// product controller
 const getProduct = require("../controllers/products/get");
 
+// address controller
 const createAddress = require("../controllers/address/create");
 const getAddressByUserId = require("../controllers/address/getByUserId");
+const deleteAddress = require("../controllers/address/delete");
+const listAddress = require("../controllers/address/list");
 
 // order controller
 const createOrder = require("../controllers/order/create");
@@ -20,10 +24,12 @@ const getOrder = require("../controllers/order/get");
 const bulkGetOrder = require("../controllers/order/bulkGet");
 const deleteOrder = require("../controllers/order/delete");
 const updateOrder = require("../controllers/order/update");
-const listOrder = require("../controllers/order/list")
+const listOrder = require("../controllers/order/list");
 
+//store controller
 const getStores = require("../controllers/stores/get");
 
+//topping controller
 const getTopping = require("../controllers/toppings/get");
 
 //user middleware
@@ -53,7 +59,10 @@ router.get("/order/:page/:pageSize", listOrder); // pagination
 // address CRUD
 router.post("/address", createAddress);
 router.get("/address/:id", getAddressByUserId);
+router.delete("/address/:id",deleteAddress);
+router.get("/address/:page/:pageSize",listAddress);// pagination
 
+// store CRUD
 router.get("/stores", getStores);
 
 

@@ -1,5 +1,6 @@
 const Address = require('../../model/Address');
 const User = require('../../model/User');
+const mongoose = require('mongoose');
 
 async function createAddress(ctx) {
     const { body } = ctx.request;
@@ -7,7 +8,7 @@ async function createAddress(ctx) {
     const { streetName,streetNum,suburb} = rest;
 
     if (userId&&streetName&&streetNum&&suburb) {
-        const check = await User.findById(userId);
+        const check = await User.findById({ _id: new mongoose.Types.ObjectId(userId) });
         if(check){
             const newAddress = new Address(rest);
             let addressRes = await newAddress.save();
@@ -30,7 +31,7 @@ async function createAddress(ctx) {
         }else{
             ctx.status = 400;
             ctx.body = {
-                message: "User does not exist",
+                message: `User: ${userId} does not exist`,
             }
         }
         

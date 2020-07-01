@@ -178,6 +178,39 @@ paths:
           description: Addresses response
         "404":
           description: User no found or address not found
+    delete:
+      summary: Delete address
+      description: Delete an address by address id
+      tags:
+        - Address
+      parameters:
+        - in: path
+          name: id
+          description: id of address
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Address deleted
+        "404":
+          description: Address not found
+  /address/{page}/{pageSize}:
+    get:
+      summary: List addresses
+      description: List addresses and support pagenation.
+      tags:
+        - Address
+      parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+      responses:
+        "200":
+          description: Addresses response.
+        "400":
+          description: Bad request.
+        "404":
+          description: Addresses not found.        
   /stores:
     get:
       summary: Get stores
