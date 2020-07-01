@@ -12,7 +12,7 @@ const Login = require("../controllers/user/login");
 const getProduct = require("../controllers/products/get");
 
 const createAddress = require("../controllers/address/create");
-const getAddress = require("../controllers/address/get");
+const getAddressByUserId = require("../controllers/address/getByUserId");
 
 // order controller
 const createOrder = require("../controllers/order/create");
@@ -52,7 +52,7 @@ router.get("/order/:page/:pageSize", listOrder); // pagination
 
 // address CRUD
 router.post("/address", createAddress);
-router.get("/address/:id", getAddress);
+router.get("/address/:id", getAddressByUserId);
 
 router.get("/stores", getStores);
 

@@ -151,6 +151,7 @@ paths:
                 postcode:
                   type: number
               required:
+                - userId
                 - streetNum
                 - streetName
                 - suburb
@@ -158,7 +159,7 @@ paths:
         "201":
           description: Address Created
         "400":
-          description: Bad address request
+          description: Bad address request (User does not exist or Missing information)
   /address/{id}:
     get:
       summary: Get addresses
@@ -176,7 +177,7 @@ paths:
         "200":
           description: Addresses response
         "404":
-          description: User no found
+          description: User no found or address not found
   /stores:
     get:
       summary: Get stores
