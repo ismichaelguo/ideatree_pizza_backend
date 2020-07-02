@@ -8,6 +8,7 @@ async function Login(ctx) {
   const { email, password } = body;
   console.log("body", body);
   const user = await User.findOne({ email: email });
+  console.log("user",user)
   if (!user.length) {
     ctx.status = 401;
     ctx.body = {

@@ -8,6 +8,7 @@ const deleteUser = require("../controllers/user/delete");
 const updateUser = require("../controllers/user/update");
 const getUser = require("../controllers/user/get");
 const Login = require("../controllers/user/login");
+const getUserOrders = require('../controllers/user/userOrder')
 
 // product controller
 const getProduct = require("../controllers/products/get");
@@ -42,6 +43,9 @@ router.get("/user/:id", getUser);
 router.put("/user/:id", updateUser);
 router.delete("/user/:id", deleteUser);
 
+//user orders
+router.get("/user/order/:id", getUserOrders);
+
 //product
 router.get("/products", getProduct);
 
@@ -54,7 +58,7 @@ router.get("/order", bulkGetOrder);
 router.get("/order/:id", getOrder);
 router.delete("/order/:id", deleteOrder);
 router.put("/order/:id", updateOrder);
-router.get("/order/:page/:pageSize", listOrder); // pagination
+router.get("/order/:page/:pageSize",listOrder);
 
 // address CRUD
 router.post("/address", createAddress);
@@ -64,7 +68,5 @@ router.get("/address/:page/:pageSize",listAddress);// pagination
 
 // store CRUD
 router.get("/stores", getStores);
-
-
 
 module.exports = router;
