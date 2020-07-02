@@ -13,7 +13,6 @@ async function getAddress(ctx){
         ctx.body = {
             message:"Can't find any address!"
         }
-       
     }
 
 }
