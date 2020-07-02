@@ -7,10 +7,10 @@ const UserSchema = new mongoose.Schema({
     name:String,
     password:String,
     phone:String,
-    addresses:[
+    order: [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Address"
+            type: mongoose.Schema.Types.ObjectId,
+            ref:"Order"
         }
     ]
 

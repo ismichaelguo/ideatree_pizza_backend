@@ -8,7 +8,7 @@ async function createOrder (ctx) {
   ctx.status = 201;
   ctx.body = {
     message: "Order Created!",
-    res,
+    id:res.id,
   }
 }
 
