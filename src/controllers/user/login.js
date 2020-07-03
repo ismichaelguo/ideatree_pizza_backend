@@ -45,6 +45,7 @@ async function Login(ctx) {
       cookie: ctx.cookies.get("tokenName"),
       user:user.email,
       id:user.id,
+      order:user.order,
     };
   } else {
     ctx.status = 401;
