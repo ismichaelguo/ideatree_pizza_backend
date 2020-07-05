@@ -353,6 +353,22 @@ paths:
           description: Bad request
         "404":
           description: Users not found 
+  /user/{page}/{pageSize}:
+    get:
+      summary: List users.
+      description: List users and support pagenation.
+      tags:
+        - Bulk User
+      parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+      responses:
+        "200":
+          description: A user response.
+        "400":
+          description: Bad Request.
+        "404":
+          description: User not found.          
 components:
   securitySchemes:
     bearerAuth:            # arbitrary name for the security scheme

@@ -8,7 +8,8 @@ const deleteUser = require("../controllers/user/delete");
 const updateUser = require("../controllers/user/update");
 const getUser = require("../controllers/user/get");
 const Login = require("../controllers/user/login");
-const getUserOrders = require('../controllers/user/userOrder')
+const getUserOrders = require("../controllers/user/userOrder");
+const listUser = require("../controllers/user/list");
 
 const getProduct = require("../controllers/products/get");
 
@@ -21,7 +22,7 @@ const getOrder = require("../controllers/order/get");
 const bulkGetOrder = require("../controllers/order/bulkGet");
 const deleteOrder = require("../controllers/order/delete");
 const updateOrder = require("../controllers/order/update");
-const listOrder = require("../controllers/order/list")
+const listOrder = require("../controllers/order/list");
 
 const getStores = require("../controllers/stores/get");
 
@@ -36,6 +37,8 @@ router.post("/user/signup", ExpandUsername, createUser);
 router.get("/user/:id", getUser);
 router.put("/user/:id", updateUser);
 router.delete("/user/:id", deleteUser);
+
+router.get("/user/:page/:pageSize", listUser);
 
 //user orders
 router.get("/user/order/:id", getUserOrders);
@@ -52,7 +55,7 @@ router.get("/order", bulkGetOrder);
 router.get("/order/:id", getOrder);
 router.delete("/order/:id", deleteOrder);
 router.put("/order/:id", updateOrder);
-router.get("/order/:page/:pageSize",listOrder);
+router.get("/order/:page/:pageSize", listOrder);
 
 // address CRUD
 router.post("/address", createAddress);
