@@ -1,8 +1,7 @@
 const Address = require('../../model/Address');
-const User = require('../../model/User');
 const mongoose = require('mongoose');
 
-async function getAddressByUserId(ctx) {
+async function getAddress(ctx) {
     const { id } = ctx.params;
     const check = await User.findById({ _id: new mongoose.Types.ObjectId(id) });
     if (check === null) {
@@ -27,4 +26,4 @@ async function getAddressByUserId(ctx) {
 
 }
 
-module.exports = getAddressByUserId;
+module.exports = getAddress;
