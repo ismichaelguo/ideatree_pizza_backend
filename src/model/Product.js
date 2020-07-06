@@ -9,8 +9,7 @@ const ItemSchema = new mongoose.Schema({
     imgAlt: String,
     name: String,
     description: String,
-    price: Number,
-    calories: Number,
+    price: String,
     calories: String,
 })
 
@@ -19,7 +18,7 @@ const ProductSchema = new mongoose.Schema({
     itemFirstName: String,
     itemLastName: String,
     locationID: String,
-    item: [ItemSchema],
+    items: [ItemSchema],
 
 
 },{ collection : 'products' })

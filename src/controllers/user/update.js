@@ -18,29 +18,35 @@ async function updateUser(ctx){
         if(!email&&!password&&!phone&&!name&&order){
             const orderId = body.order 
             console.log("order_id",orderId)
+            // const res = await User.updateOne(
+            //     { _id: new mongoose.Types.ObjectId(id) },
+            //     { $push: { order: new mongoose.Types.ObjectId(orderId) } },
+            //     { new: true}
 
-            const res = await User.updateOne(
-                {_id: new mongoose.Types.ObjectId(id)},
-                {$push:{order:orderId}}
-            )
+            //   );
+            // await user.order.push(new mongoose.Types.ObjectId(orderId));
+            console.log("order",user.order)
+            console.log("push",await user.order.push(new mongoose.Types.ObjectId(orderId)))
+            console.log("order",user.order)
+            await user.save();
+
+
+
+
             ctx.body = {
                 message:"order id updated",
-                res,
+                // res,
             }
         }else{
-            Object.assign(user,body);
-            const res = await user.save();
-            ctx.body = {
-                message: "Updated!",
-                res
-            }
+            // Object.assign(user,body);
+            // const res = await user.save();
+            // ctx.body = {
+            //     message: "Updated!",
+            //     res
+            // }
         }
-        Object.assign(user,body);
-        const res = await user.save();
-        ctx.body = {
-            message: "Updated!",
-            res
-        }
+
+
     }
 }
 
