@@ -112,6 +112,8 @@ paths:
                   type: string
                 phone:
                   type: string
+                order:
+                  type: string
       responses:
         "201":
           description: Updated
@@ -123,6 +125,76 @@ paths:
       description: Get all products
       tags:
         - Product
+      responses:
+        "200":
+          description: Product has a response
+        "404":
+          description: Product no found
+  /products/item/{id}/{idOfItem}:
+    put:
+      summary: Update product
+      description: Update product by id
+      tags:
+        - Product
+      parameters:
+        - $ref: "#/components/parameters/id"
+        - $ref: "#/components/parameters/idOfItem"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items: 
+                    type: object
+                    properties:
+                      id: 
+                        type: number
+                      imgSrc: 
+                        type: string
+                      imgDetail: 
+                        type: string
+                      imgAlt: 
+                        type: string
+                      name: 
+                        type: string
+                      description: 
+                        type: string
+                      price: 
+                        type: number
+                      calories: 
+                        type: string
+      responses:
+        "201":
+          description: Updated
+        "404":
+          description: Product no found
+    delete:
+      summary: Delete single product
+      description: Delete a product by item id
+      tags:
+        - Product
+      parameters:
+        - $ref: "#/components/parameters/id"
+        - $ref: "#/components/parameters/idOfItem"
+      responses:
+        "201":
+          description: Deleted!
+        "404":
+          description: User no found
+  /products/{page}/{pageSize}:
+    get:
+      summary: Get products
+      description: Get products by page and page size
+      tags:
+        - Product
+      parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
       responses:
         "200":
           description: Product has a response
@@ -381,4 +453,13 @@ components:
       schema:
         type: string
       required: true
+    idOfItem:
+      in: path
+      name: idOfItem
+      description: id of item, must be unique
+      schema:
+        type: string
+      required: true 
+
+
 
