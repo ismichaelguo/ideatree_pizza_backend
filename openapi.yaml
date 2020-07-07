@@ -269,6 +269,43 @@ paths:
           description: Address deleted
         "404":
           description: Address not found
+    put:
+      summary: Update address
+      description: update a address by id
+      tags:
+        - Address
+      parameters:
+        - in: path
+          name: id
+          description: id of address
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit:
+                  type: number
+                streetNum:
+                  type: number
+                streetName:
+                  type: string
+                suburb:
+                  type: string
+                postcode:
+                  type: number
+              required:
+                - streetNum
+                - streetName
+                - suburb
+      responses:
+        "200":
+          description: Address updated
+        "404":
+          description: Address not found
   /address/{page}/{pageSize}:
     get:
       summary: List addresses

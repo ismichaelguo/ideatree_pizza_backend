@@ -23,8 +23,8 @@ const deleteProduct = require('../controllers/products/delete');
 const createAddress = require("../controllers/address/create");
 const getAddressByUserId = require("../controllers/address/getByUserId");
 const deleteAddress = require("../controllers/address/delete");
+const updateAddress = require("../controllers/address/update");
 const listAddress = require("../controllers/address/list");
-const getAddressByAddressId=require('../controllers/address/getByAddressId');
 
 // order controller
 const createOrder = require("../controllers/order/create");
@@ -78,6 +78,7 @@ router.get("/order/:page/:pageSize", listOrder);
 router.post("/address", createAddress);
 router.get("/address/:id", getAddressByUserId);
 router.delete("/address/:id",deleteAddress);
+router.put("/address/:id",updateAddress);
 router.get("/address/:page/:pageSize",listAddress);// pagination
 
 // store CRUD
