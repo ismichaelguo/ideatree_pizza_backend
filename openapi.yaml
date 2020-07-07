@@ -225,14 +225,15 @@ paths:
                 postcode:
                   type: number
               required:
-                    - streetNum
-                    - streetName
-                    - suburb
+                - userId
+                - streetNum
+                - streetName
+                - suburb
       responses:
         "201":
           description: Address Created
         "400":
-          description: Bad address request
+          description: Bad address request (User does not exist or Missing information)
   /address/{id}:
     get:
       summary: Get addresses 
@@ -250,7 +251,77 @@ paths:
         "200":
           description: Addresses response
         "404":
-          description: User no found
+          description: User no found or address not found
+    delete:
+      summary: Delete address
+      description: Delete an address by address id
+      tags:
+        - Address
+      parameters:
+        - in: path
+          name: id
+          description: id of address
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Address deleted
+        "404":
+          description: Address not found
+    put:
+      summary: Update address
+      description: update a address by id
+      tags:
+        - Address
+      parameters:
+        - in: path
+          name: id
+          description: id of address
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit:
+                  type: number
+                streetNum:
+                  type: number
+                streetName:
+                  type: string
+                suburb:
+                  type: string
+                postcode:
+                  type: number
+              required:
+                - streetNum
+                - streetName
+                - suburb
+      responses:
+        "200":
+          description: Address updated
+        "404":
+          description: Address not found
+  /address/{page}/{pageSize}:
+    get:
+      summary: List addresses
+      description: List addresses and support pagenation.
+      tags:
+        - Address
+      parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+      responses:
+        "200":
+          description: Addresses response.
+        "400":
+          description: Bad request.
+        "404":
+          description: Addresses not found.        
   /stores:
     get:
       summary: Get stores

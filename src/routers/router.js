@@ -19,8 +19,12 @@ const deleteProduct = require('../controllers/products/delete');
 
 
 
+// address controller
 const createAddress = require("../controllers/address/create");
-const getAddress = require("../controllers/address/get");
+const getAddressByUserId = require("../controllers/address/getByUserId");
+const deleteAddress = require("../controllers/address/delete");
+const updateAddress = require("../controllers/address/update");
+const listAddress = require("../controllers/address/list");
 
 // order controller
 const createOrder = require("../controllers/order/create");
@@ -30,8 +34,10 @@ const deleteOrder = require("../controllers/order/delete");
 const updateOrder = require("../controllers/order/update");
 const listOrder = require("../controllers/order/list");
 
+//store controller
 const getStores = require("../controllers/stores/get");
 
+//topping controller
 const getTopping = require("../controllers/toppings/get");
 
 //user middleware
@@ -70,8 +76,12 @@ router.get("/order/:page/:pageSize", listOrder);
 
 // address CRUD
 router.post("/address", createAddress);
-router.get("/address/:id", getAddress);
+router.get("/address/:id", getAddressByUserId);
+router.delete("/address/:id",deleteAddress);
+router.put("/address/:id",updateAddress);
+router.get("/address/:page/:pageSize",listAddress);// pagination
 
+// store CRUD
 router.get("/stores", getStores);
 
 module.exports = router;
