@@ -5,9 +5,7 @@ async function updateProduct(ctx) {
   const { id } = ctx.params;
   const { body } = ctx.request;
   const { idOfItem } = ctx.params;
-  console.log("body", body);
-  console.log("id", id);
-  console.log("idOfItem", idOfItem);
+
   let itemId = parseInt(idOfItem);
 
   const product = await Product.findOne({
@@ -46,6 +44,7 @@ async function updateProduct(ctx) {
 
   // const ress = await res.findOne({"items":{$elemMatch: {id: 1}}})
   // Object.assign(product,body);
+  ctx.status = 201;
   ctx.body = {
     message: "Product updated!",
     res,
