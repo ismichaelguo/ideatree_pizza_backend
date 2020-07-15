@@ -3,6 +3,7 @@
 const User = require("../../model/User");
 
 async function listUser(ctx) {
+  console.log("22222")
   let { page, pageSize } = ctx.params;
   page = +page;
   pageSize = +pageSize;

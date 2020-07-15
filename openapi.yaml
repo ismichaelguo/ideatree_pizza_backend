@@ -119,6 +119,21 @@ paths:
           description: Updated
         "404":
           description: User no found
+  /user/detail/orders/{id}:
+    get:
+      summary: Get user orders
+      description: Get user orders by id
+      tags:
+        - User
+      parameters:
+        - $ref: "#/components/parameters/id"
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: Updated
+        "404":
+          description: User no found
   /products:
     get:
       summary: Get Products
@@ -479,23 +494,6 @@ paths:
           description: Order updated
         "404":
           description: Order no found
-  /user/order/{id}:
-    get:
-      summary: Get list of users.
-      description: Get list of users by page and page size.
-      tags:
-        - User
-      parameters:
-        - $ref: "#/components/parameters/id"
-      security:
-        - bearerAuth: []
-      responses:
-        "200":
-          description: A user response
-        "400":
-          description: Bad request
-        "404":
-          description: Users not found 
   /user/{page}/{pageSize}:
     get:
       summary: List users.

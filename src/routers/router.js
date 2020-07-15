@@ -54,7 +54,7 @@ router.delete("/user/:id", deleteUser);
 router.get("/user/:page/:pageSize", listUser);
 
 //user orders
-router.get("/user/order/:id", getUserOrders);
+router.get("/user/detail/orders/:id", getUserOrders);
 
 //product
 router.get("/products", getProduct);
