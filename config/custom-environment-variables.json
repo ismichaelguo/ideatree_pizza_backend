@@ -1,0 +1,10 @@
+{
+    "App": {
+        "port": "APP_PORT" 
+    },
+    "MongoDB": {
+        "userName": "USER_NAME", 
+        "password": "PASSWORD", 
+        "database": "DATABASE"
+    }
+}

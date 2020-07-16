@@ -1,3 +1,4 @@
+require("dotenv-safe").config();
 const Koa = require("koa");
 const bodyParser = require("koa-bodyparser");
 const { oas } = require("koa-oas3");
@@ -5,17 +6,20 @@ const { oas } = require("koa-oas3");
 const cors = require("koa2-cors");
 const jwt = require("koa-jwt");
 const isRevoked = require("./src/server/isRevoked");
+const config = require("config");
+
+// import environment variables
+const databaseConfig = config.get("MongoDB");
+const appPort = config.get("App.port");
 
 const mongoose = require("mongoose");
 const app = new Koa();
 const router = require("./src/routers/router");
 
 // config mongoose, connect to mongodb
-//mongodb://127.0.0.1:27017/
-//mongodb+srv://michael_guo:As5821647@cluster0-nzyqb.mongodb.net/idea-pizza?retryWrites=true&w=majority
 mongoose
   .connect(
-    "mongodb+srv://michael_guo:As5821647@cluster0-nzyqb.mongodb.net/idea-pizza?retryWrites=true&w=majority",
+    `mongodb+srv://${databaseConfig.userName}:${databaseConfig.password}@cluster0-nzyqb.mongodb.net/${databaseConfig.database}`,
     { useUnifiedTopology: true, useNewUrlParser: true }
   )
   .catch((error) => console.log(error));
@@ -54,6 +58,6 @@ app.use(
 app.use(bodyParser());
 app.use(router.routes());
 
-app.listen(8080, () => {
+app.listen(appPort || process.env.PORT, () => {
   console.log("the server is listening on 8080");
 });

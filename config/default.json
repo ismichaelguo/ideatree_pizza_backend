@@ -1,0 +1,48 @@
+{
+    "App": {
+        "port": "APP_PORT" 
+    },
+    "MongoDB": {
+        "userName": "USER_NAME", 
+        "password": "PASSWORD", 
+        "database": "DATABASE"
+    },
+    "Log4js": {
+        "appenders": {
+            "error": {
+                "category": "errorLogger",
+                "type": "dateFile",
+                "filename": "logs/error/error",
+                "alwaysIncludePattern": true, 
+                "pattern": "yyyy-MM-dd-hh.log" 
+            },
+            "response": {
+                "category": "resLogger",
+                "type": "dateFile",
+                "filename": "logs/response/response",
+                "alwaysIncludePattern": true,
+                "pattern": "yyyy-MM-dd-hh.log"
+            }
+        },
+        "categories": {
+            "error": {
+                "appenders": [
+                    "error"
+                ],
+                "level": "error"
+            },
+            "response": {
+                "appenders": [
+                    "response"
+                ],
+                "level": "info"
+            },
+            "default": {
+                "appenders": [
+                    "response"
+                ],
+                "level": "info"
+            }
+        }
+    }
+}
