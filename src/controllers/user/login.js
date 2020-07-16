@@ -27,14 +27,22 @@ async function Login(ctx) {
 
   if (compare) {
     ctx.status = 200;
+    ctx.cookies.set("tokenName", token, {
+      //cookie expire time
+      expires: new Date("2020-08-10"),
+      //cookie existing time
+      maxAge: 60 * 60,
+      httpOnly: false,
+    });
+
     ctx.body = {
       message: " Log in successful!",
       //jwt.sign(payload, secretOrPrivateKey, [options, callback])
       token: token,
       cookie: ctx.cookies.get("tokenName"),
-      user:user.email,
-      id:user.id,
-      order:user.order,
+      user: user.email,
+      id: user.id,
+      order: user.order,
     };
   } else {
     ctx.status = 401;

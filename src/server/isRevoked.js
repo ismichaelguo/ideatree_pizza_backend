@@ -3,10 +3,6 @@ const jsonwebtoken = require("jsonwebtoken");
 // const jwt = require('koa-jwt');
 
 function getToken(user) {
-  // const parts1 = ctx.header.authorization.split(" ");
-  // const token = parts1[1];
-  // const email = jsonwebtoken.decode(token).data;
-  // console.log("decode",email)
   const secret = "jwt_secret";
   const newToken = jsonwebtoken.sign(
     {
@@ -22,12 +18,10 @@ function isRevoked(ctx, next) {
   //if there is token in the header
   if (ctx.header && ctx.header.authorization) {
     const parts = ctx.header.authorization.split(" ");
-    console.log("length", parts.length);
     if (parts.length === 2) {
       //take token from the request header
       const scheme = parts[0];
       const token = parts[1];
-      console.log("token", token);
       //Bearer authentication
       if (/^Bearer$/i.test(scheme)) {
         try {

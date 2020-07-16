@@ -5,7 +5,6 @@ async function updateProduct(ctx) {
   const { id } = ctx.params;
   const { body } = ctx.request;
   const { idOfItem } = ctx.params;
-
   let itemId = parseInt(idOfItem);
 
   const product = await Product.findOne({
@@ -18,16 +17,7 @@ async function updateProduct(ctx) {
       message: "Product not found!",
     };
   }
-  // const res = await Product.findOne(
-  //   { _id: new mongoose.Types.ObjectId(id) },
-  //   {$arrayElemAt: ["items",1] }
-  // );
 
-  // const res = await Product.updateOne(
-  // { _id: new mongoose.Types.ObjectId(id) },
-  // {"items":{$elemMatch: {id: parseInt(idOfItem)}}},
-  // {$set:{"items.price":"20"}}
-  // );
   const res = await Product.updateMany(
     { "items.id": itemId },
     {
@@ -35,16 +25,20 @@ async function updateProduct(ctx) {
         "items.$.price": body.price,
         "items.$.name": body.name,
         "items.$.imgDetail": body.imgDetail,
-        "items.$.description":body.description
+        "items.$.description": body.description,
       },
     }
   );
-  // const res1 = res.items
-  console.log("product====", res);
 
+<<<<<<< HEAD
   // const ress = await res.findOne({"items":{$elemMatch: {id: 1}}})
   // Object.assign(product,body);
   ctx.status = 201;
+||||||| merged common ancestors
+  // const ress = await res.findOne({"items":{$elemMatch: {id: 1}}})
+  // Object.assign(product,body);
+=======
+>>>>>>> 7bcb728cd877d650d58723614e59797931467927
   ctx.body = {
     message: "Product updated!",
     res,
