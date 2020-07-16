@@ -479,7 +479,7 @@ paths:
           description: Order updated
         "404":
           description: Order no found
-  /user/order/{id}:
+  /userorders/{id}:
     get:
       summary: Get list of users.
       description: Get list of users by page and page size.

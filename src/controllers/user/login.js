@@ -6,9 +6,7 @@ const bcrypt = require("bcrypt");
 async function Login(ctx) {
   const { body } = ctx.request;
   const { email, password } = body;
-  console.log("body", body);
   const user = await User.findOne({ email: email });
-  console.log("user",user)
   if (!user.length) {
     ctx.status = 401;
     ctx.body = {
@@ -19,7 +17,6 @@ async function Login(ctx) {
   const secret = "jwt_secret";
 
   const compare = await bcrypt.compare(password, user.password);
-  console.log("compare", compare);
   const token = jsonwebtoken.sign(
     {
       data: user.email,
@@ -37,15 +34,15 @@ async function Login(ctx) {
       maxAge: 60 * 60,
       httpOnly: false,
     });
-    console.log("cookie", ctx.cookies.get("tokenName"));
+
     ctx.body = {
       message: " Log in successful!",
       //jwt.sign(payload, secretOrPrivateKey, [options, callback])
       token: token,
       cookie: ctx.cookies.get("tokenName"),
-      user:user.email,
-      id:user.id,
-      order:user.order,
+      user: user.email,
+      id: user.id,
+      order: user.order,
     };
   } else {
     ctx.status = 401;

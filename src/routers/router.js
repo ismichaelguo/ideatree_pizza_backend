@@ -13,11 +13,9 @@ const listUser = require("../controllers/user/list");
 
 //product controller
 const getProduct = require("../controllers/products/get");
-const productList = require('../controllers/products/productList');
-const updateProduct = require('../controllers/products/update');
-const deleteProduct = require('../controllers/products/delete');
-
-
+const productList = require("../controllers/products/productList");
+const updateProduct = require("../controllers/products/update");
+const deleteProduct = require("../controllers/products/delete");
 
 // address controller
 const createAddress = require("../controllers/address/create");
@@ -54,14 +52,13 @@ router.delete("/user/:id", deleteUser);
 router.get("/user/:page/:pageSize", listUser);
 
 //user orders
-router.get("/user/order/:id", getUserOrders);
+router.get("/userorders/:id", getUserOrders);
 
 //product
 router.get("/products", getProduct);
-router.get('/products/:page/:pageSize',productList);
-router.put('/products/item/:id/:idOfItem',updateProduct);
-router.delete('/products/item/:id/:idOfItem',deleteProduct);
-
+router.get("/products/:page/:pageSize", productList);
+router.put("/products/item/:id/:idOfItem", updateProduct);
+router.delete("/products/item/:id/:idOfItem", deleteProduct);
 
 // topping controller
 router.get("/toppings", getTopping);
@@ -77,9 +74,9 @@ router.get("/order/:page/:pageSize", listOrder);
 // address CRUD
 router.post("/address", createAddress);
 router.get("/address/:id", getAddressByUserId);
-router.delete("/address/:id",deleteAddress);
-router.put("/address/:id",updateAddress);
-router.get("/address/:page/:pageSize",listAddress);// pagination
+router.delete("/address/:id", deleteAddress);
+router.put("/address/:id", updateAddress);
+router.get("/address/:page/:pageSize", listAddress); // pagination
 
 // store CRUD
 router.get("/stores", getStores);
