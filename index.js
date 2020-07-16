@@ -58,6 +58,6 @@ app.use(
 app.use(bodyParser());
 app.use(router.routes());
 
-app.listen(appPort || process.env.PORT, () => {
+app.listen(process.env.PORT || appPort, () => {
   console.log("the server is listening on 8080");
 });
