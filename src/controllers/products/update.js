@@ -30,15 +30,6 @@ async function updateProduct(ctx) {
     }
   );
 
-<<<<<<< HEAD
-  // const ress = await res.findOne({"items":{$elemMatch: {id: 1}}})
-  // Object.assign(product,body);
-  ctx.status = 201;
-||||||| merged common ancestors
-  // const ress = await res.findOne({"items":{$elemMatch: {id: 1}}})
-  // Object.assign(product,body);
-=======
->>>>>>> 7bcb728cd877d650d58723614e59797931467927
   ctx.body = {
     message: "Product updated!",
     res,
