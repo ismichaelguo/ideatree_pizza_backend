@@ -17,6 +17,7 @@
     "@koa/cors": "^3.1.0",
     "bcrypt": "^5.0.0",
     "config": "^3.3.1",
+    "docker": "^1.0.0",
     "dotenv-safe": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.12.1",
